@@ -1,0 +1,308 @@
+
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#153f4b">
+<title>Tower Rush — Seu Bônus</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #153f4b;
+}
+
+.page {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    height: 100dvh;
+    overflow: hidden;
+    background: #153f4b;
+}
+
+/* FAIXAS DE ESTRADA EM MOVIMENTO */
+
+.stripe {
+    position: absolute;
+    left: -50%;
+    width: 200%;
+    height: 10.2%;
+
+    background: repeating-linear-gradient(
+        115deg,
+        #e5a42d 0px,
+        #e5a42d 39px,
+        #050505 39px,
+        #050505 66px,
+        #e5a42d 66px,
+        #e5a42d 105px
+    );
+
+    background-size: 105px 100%;
+    will-change: background-position;
+}
+
+.stripe-top {
+    top: -2.4%;
+    transform: rotate(-6deg);
+    animation: estrada-top 0.7s linear infinite;
+}
+
+.stripe-bottom {
+    bottom: 8.1%;
+    transform: rotate(6deg);
+    animation: estrada-bottom 0.7s linear infinite;
+}
+
+/* MOVIMENTO CONTÍNUO DAS FAIXAS */
+
+@keyframes estrada-top {
+    from {
+        background-position: 0 0;
+    }
+    to {
+        background-position: 105px 0;
+    }
+}
+
+@keyframes estrada-bottom {
+    from {
+        background-position: 105px 0;
+    }
+    to {
+        background-position: 0 0;
+    }
+}
+
+/* LOGÓTIPO TOWER RUSH */
+
+.logo {
+    position: absolute;
+    top: 14.1%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50%;
+    text-align: center;
+    font-weight: 1000;
+    font-style: italic;
+    line-height: 0.88;
+    white-space: nowrap;
+}
+
+.logo-tower {
+    display: block;
+    color: #ffad19;
+    font-size: clamp(35px, 9.8vw, 78px);
+    letter-spacing: -0.07em;
+    text-shadow: 1px 3px 0 #b97912;
+}
+
+.logo-rush {
+    display: block;
+    color: #13b7f4;
+    font-size: clamp(32px, 8.5vw, 68px);
+    letter-spacing: -0.045em;
+    text-shadow: 1px 3px 0 #0877b0;
+}
+
+/* CARTÃO DO BÓNUS */
+
+.bonus-card {
+    position: absolute;
+    top: 31.45%;
+    left: 4.1%;
+    width: 91.8%;
+    height: 38.55%;
+    border: 2px solid #f3c347;
+    border-radius: 5.2%;
+
+    background: radial-gradient(
+        ellipse at 50% 0%,
+        #514034 0%,
+        #30241e 48%,
+        #030303 100%
+    );
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* TÍTULO */
+
+.bonus-title {
+    position: absolute;
+    top: 17.5%;
+    font-size: clamp(22px, 5.9vw, 46px);
+    font-weight: 800;
+    color: #ffffff;
+    text-align: center;
+}
+
+/* VALOR DO BÓNUS */
+
+.bonus-amount {
+    position: absolute;
+    top: 35.5%;
+    font-size: clamp(31px, 7.9vw, 63px);
+    font-weight: 800;
+    color: #ffffff;
+    white-space: nowrap;
+}
+
+/* SUBTÍTULO */
+
+.bonus-subtitle {
+    position: absolute;
+    top: 56.5%;
+    font-size: clamp(19px, 4.5vw, 36px);
+    font-weight: 400;
+    color: #d0cccc;
+}
+
+/* BOTÃO JOGAR */
+
+.play-button {
+    position: absolute;
+    top: 76.3%;
+    left: 14.7%;
+    width: 70.6%;
+    height: 22.4%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border: 2px solid #ffda78;
+    border-radius: 17%;
+
+    background: linear-gradient(
+        180deg,
+        #ffda70 0%,
+        #ffc13c 58%,
+        #f5a923 100%
+    );
+
+    color: #201609;
+    font-size: clamp(22px, 4.9vw, 39px);
+    font-weight: 900;
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
+
+    overflow: hidden;
+    isolation: isolate;
+
+    animation: brilho-pulso 1.8s ease-in-out infinite;
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* BRILHO EM MOVIMENTO */
+
+.play-button::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -100%;
+    width: 55%;
+    height: 200%;
+
+    background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.15) 25%,
+        rgba(255, 255, 255, 0.95) 50%,
+        rgba(255, 255, 255, 0.15) 75%,
+        transparent 100%
+    );
+
+    transform: skewX(-25deg);
+    animation: passar-brilho 2.2s ease-in-out infinite;
+    pointer-events: none;
+    z-index: -1;
+}
+
+@keyframes brilho-pulso {
+    0%, 100% {
+        box-shadow:
+            0 0 5px rgba(255, 193, 60, 0.35),
+            0 0 12px rgba(255, 193, 60, 0.2);
+    }
+
+    50% {
+        box-shadow:
+            0 0 12px rgba(255, 218, 112, 0.85),
+            0 0 25px rgba(255, 193, 60, 0.55);
+    }
+}
+
+@keyframes passar-brilho {
+    0% {
+        left: -100%;
+    }
+    60%, 100% {
+        left: 150%;
+    }
+}
+
+.play-button:active {
+    filter: brightness(0.97);
+}
+
+/* ACESSIBILIDADE */
+
+@media (prefers-reduced-motion: reduce) {
+    .stripe-top,
+    .stripe-bottom,
+    .play-button,
+    .play-button::before {
+        animation: none;
+    }
+}
+</style>
+</head>
+
+<body>
+<main class="page">
+
+    <div class="stripe stripe-top"></div>
+    <div class="stripe stripe-bottom"></div>
+
+    <div class="logo">
+        <span class="logo-tower">TOWER</span>
+        <span class="logo-rush">RUSH</span>
+    </div>
+
+    <section class="bonus-card">
+        <h1 class="bonus-title">SEU BÔNUS!</h1>
+
+        <div class="bonus-amount">1,500 MZN</div>
+
+        <p class="bonus-subtitle">Tente a sorte</p>
+
+        <a
+            class="play-button"
+            href="https://tracking.olabet.co.mz/C.ashx?btag=a_5282b_7c_&affid=5093&siteid=5282&adid=7&c="
+            target="_blank"
+            rel="noopener noreferrer"
+        >JOGAR</a>
+    </section>
+
+</main>
+</body>
+</html>
